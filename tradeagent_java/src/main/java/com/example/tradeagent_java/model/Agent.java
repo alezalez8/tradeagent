@@ -23,10 +23,22 @@ public class Agent {
     private String login;
     private String password;
 
+
+
     @Column(name = "agent_create")
     @Temporal(TemporalType.TIMESTAMP)
     private Date agentCreate;
 
+    @Column(name = "comment")
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     @OneToMany(mappedBy = "agent")
     private List<Order> orderList = new ArrayList<>();

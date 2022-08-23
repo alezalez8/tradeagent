@@ -19,12 +19,11 @@ public class Order {
     private Long id;
 
 
-//-------------------------------------------
-
-    @Transient
-   // @Column(name = "place_of_contact")
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private PlaceOfContact placeOfContact;
-//------------------------------------------------
+
+
     @Column(name = "total_sum")
     private double totalSum;
 
@@ -43,12 +42,15 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfCreation = new Date();
 
+    @Column(name = "comment")
+    private String comment;
+
     @ManyToOne
     @JoinColumn(name = "agent_id")
     private Agent agent;
 
-   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-   private  List<Product> productList = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Product> productList = new ArrayList<>();
 
     public Order() {
     }
@@ -61,12 +63,20 @@ public class Order {
         this.id = id;
     }
 
-    public com.example.tradeagent_java.model.PlaceOfContact getPlaceOfContact() {
+    public PlaceOfContact getPlaceOfContact() {
         return placeOfContact;
     }
 
-    public void setPlaceOfContact(com.example.tradeagent_java.model.PlaceOfContact placeOfContact) {
+    public void setPlaceOfContact(PlaceOfContact placeOfContact) {
         this.placeOfContact = placeOfContact;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public double getTotalSum() {
