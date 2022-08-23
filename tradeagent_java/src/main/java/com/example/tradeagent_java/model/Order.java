@@ -16,56 +16,56 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private long id;
+    private Long id;
 
-    @Transient
-   // @Column(name = "agent")
-    private Agent agent;
+
+//-------------------------------------------
 
     @Transient
    // @Column(name = "place_of_contact")
     private PlaceOfContact placeOfContact;
-
+//------------------------------------------------
     @Column(name = "total_sum")
     private double totalSum;
 
-    @Column(name = "payd")
-    private double payd;
+    @Column(name = "paid")
+    private double paid;
 
-    @Transient
-   // @Column(name = "payment_info")
+    @Column(name = "rest")
+    private double restFromTotalSum;
+
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private PaymentInfo paymentInfo;
 
     @Column(name = "date_creation")
-    @Timestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfCreation = new Date();
 
-   // List<Product> productList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "agent_id")
+    private Agent agent;
+
+   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+   private  List<Product> productList = new ArrayList<>();
 
     public Order() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Agent getAgent() {
-        return agent;
-    }
-
-    public void setAgent(Agent agent) {
-        this.agent = agent;
-    }
-
-    public PlaceOfContact getPlaceOfContact() {
+    public com.example.tradeagent_java.model.PlaceOfContact getPlaceOfContact() {
         return placeOfContact;
     }
 
-    public void setPlaceOfContact(PlaceOfContact placeOfContact) {
+    public void setPlaceOfContact(com.example.tradeagent_java.model.PlaceOfContact placeOfContact) {
         this.placeOfContact = placeOfContact;
     }
 
@@ -77,12 +77,20 @@ public class Order {
         this.totalSum = totalSum;
     }
 
-    public double getPayd() {
-        return payd;
+    public double getPaid() {
+        return paid;
     }
 
-    public void setPayd(double payd) {
-        this.payd = payd;
+    public void setPaid(double paid) {
+        this.paid = paid;
+    }
+
+    public double getRestFromTotalSum() {
+        return restFromTotalSum;
+    }
+
+    public void setRestFromTotalSum(double restFromTotalSum) {
+        this.restFromTotalSum = restFromTotalSum;
     }
 
     public PaymentInfo getPaymentInfo() {
@@ -101,11 +109,19 @@ public class Order {
         this.dateOfCreation = dateOfCreation;
     }
 
-   /* public List<Product> getProductList() {
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    public List<Product> getProductList() {
         return productList;
     }
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;
-    }*/
+    }
 }
