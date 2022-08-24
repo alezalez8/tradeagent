@@ -15,6 +15,9 @@ public class Product {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "amount")
+    private int amount;
+
     @Column(name = "price")
     private double price;
 
@@ -43,6 +46,22 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @ManyToOne(cascade = CascadeType.ALL)

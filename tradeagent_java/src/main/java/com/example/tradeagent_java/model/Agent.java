@@ -2,6 +2,7 @@ package com.example.tradeagent_java.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,12 +16,21 @@ public class Agent {
     @Column(name = "agent_id")
     private Long id;
 
-
+    @Column(name = "first_name")
+    @NotNull
     private String firstName;
+
+    @Column(name = "second_name")
+    @NotNull
     private String secondName;
+
     private String email;
+
+
     private String phone;
+
     private String login;
+
     private String password;
 
 
@@ -31,14 +41,6 @@ public class Agent {
 
     @Column(name = "comment")
     private String comment;
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 
     @OneToMany(mappedBy = "agent")
     private List<Order> orderList = new ArrayList<>();
@@ -85,6 +87,14 @@ public class Agent {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getPhone() {

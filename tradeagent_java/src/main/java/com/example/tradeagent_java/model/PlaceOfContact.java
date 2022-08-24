@@ -2,6 +2,8 @@ package com.example.tradeagent_java.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "place_of_contact")
@@ -16,10 +18,22 @@ public class PlaceOfContact {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    private String adress;
+    @NotNull
+    @Size(min = 5, max = 6)
+    private int zipcode;
+
+    @NotNull
+    private String address;
+
+    @NotNull
     private String marketName;
+
+    @NotNull
     private String contactFirstName;
+
+
     private String contactSecondName;
+
     private String comment;
 
     public PlaceOfContact() {
@@ -27,6 +41,14 @@ public class PlaceOfContact {
 
     public Long getId() {
         return id;
+    }
+
+    public int getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
     }
 
     public void setId(Long id) {
@@ -41,12 +63,12 @@ public class PlaceOfContact {
         this.order = order;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getMarketName() {

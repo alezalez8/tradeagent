@@ -45,6 +45,9 @@ public class Order {
     @Column(name = "comment")
     private String comment;
 
+
+
+
     @ManyToOne
     @JoinColumn(name = "agent_id")
     private Agent agent;
@@ -98,6 +101,8 @@ public class Order {
     public double getRestFromTotalSum() {
         return restFromTotalSum;
     }
+
+
 
     public void setRestFromTotalSum(double restFromTotalSum) {
         this.restFromTotalSum = restFromTotalSum;
