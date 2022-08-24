@@ -1,5 +1,7 @@
 package com.example.tradeagent_java.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ public class PaymentInfo {
 
     @Column(name = "date_of_payment")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy/hh/mm")
     private Date dateOfPayment;
 
     @Column(name = "comment")

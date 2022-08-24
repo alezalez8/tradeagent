@@ -2,12 +2,12 @@ package com.example.tradeagent_java.model;
 
 
 import jdk.jfr.Timestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 @Entity
 @Table(name = "orders")
@@ -40,10 +40,17 @@ public class Order {
 
     @Column(name = "date_creation")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy/hh/mm")
     private Date dateOfCreation = new Date();
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
 
     @Column(name = "comment")
     private String comment;
+
+
 
 
 
@@ -57,6 +64,7 @@ public class Order {
 
     public Order() {
     }
+
 
     public Long getId() {
         return id;

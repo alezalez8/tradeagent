@@ -1,0 +1,2 @@
+insert into agent (agent_create, comment, email, first_name, login, password, phone, second_name)
+VALUES ('22.08.24', 'first record', 'mljlll@gmail.com', 'Aleks', 'loggg', 'passss', 4422562424, 'shunin');
