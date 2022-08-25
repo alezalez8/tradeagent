@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class AgentService  {
 
@@ -20,6 +22,24 @@ public class AgentService  {
     @Transactional
     public void addAgent(Agent agent) {
         agentRepository.save(agent);
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<Agent> getAllAgents() {
+        return agentRepository.findAll();
+    }
+
+
+    @Transactional(readOnly = true)
+    public Agent getAgentById(Long id) {
+        System.err.println(agentRepository.findById(id).get());
+        return agentRepository.findById(id).get();
+    }
+
+    @Transactional(readOnly = true)
+    public Agent getAgentId(Long id) {
+        return agentRepository.finById(id);
     }
 
 

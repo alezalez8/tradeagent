@@ -143,4 +143,21 @@ public class Agent {
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
     }
+
+
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", agentCreate=" + agentCreate +
+                ", comment='" + comment + '\'' +
+                ", orderList=" + orderList +
+                '}';
+    }
 }
