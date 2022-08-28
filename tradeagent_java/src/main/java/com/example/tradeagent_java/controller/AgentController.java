@@ -5,6 +5,7 @@ import com.example.tradeagent_java.model.Agent;
 import com.example.tradeagent_java.service.AgentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public class AgentController {
         System.out.println(agent);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(agent);
+    }
+
+    @GetMapping("/all")
+    public String getAll() throws JsonProcessingException {
+        List<Agent> agentList = agentService.getAllAgents();
+        ObjectMapper mapper = new ObjectMapper();
+       return mapper.writeValueAsString(agentList);
+
     }
 
 
